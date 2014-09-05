@@ -107,6 +107,9 @@ sub _error {
             if (my $errors = $error->{errors}) {
                 $msg .= "- [$_] $errors->{$_}\n" foreach sort keys %$errors;
             }
+            if (exists $error->{errors}) {
+                $msg .= "- " . join(': ', (each %$error->{errors})) . "\n";
+            }
         } else {
             $msg .= $content;
         }
